@@ -29,9 +29,13 @@ script:
   - cd ${GOPATH}/src/github.com/alibaba/
   - sudo git clone https://github.com/jagrati15/pouch
   - cd pouch
-  #- sudo apt-get install -y golang
+  - sudo whereis go
+  - whereis go
+  - sudo apt-get install -y golang
   - sudo make build && make install
   - sudo whereis pouchd
+  - sudo whereis go
+  - whereis go
   - sudo cp bin/pouch /usr/local/bin
   - sudo cp bin/pouchd /usr/local/bin
   - PATH="$PATH" sudo hack/install/install_containerd.sh
