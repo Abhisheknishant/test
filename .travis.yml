@@ -2,27 +2,15 @@
 
 arch:
   - amd64
-#language: go
+language: go
+
+go:
+  - 1.13.4
 
 script:
   - pwd
   - echo $HOME
   - ls
-  - if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
-    sudo wget https://dl.google.com/go/go1.12.linux-arm64.tar.gz;
-    sudo tar -xf go1.12.linux-arm64.tar.gz;
-    sudo mv go /usr/bin;
-    export GOROOT=/usr/bin/go;
-    export GOPATH=$HOME/go;
-    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
-    else
-    sudo wget https://dl.google.com/go/go1.12.linux-amd64.tar.gz;
-    sudo tar -xf go1.12.linux-amd64.tar.gz;
-    sudo mv go /usr/bin;
-    export GOROOT=/usr/bin/go;
-    export GOPATH=$HOME/go;
-    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
-    fi
   - pwd
   - echo $GOPATH
   - echo $PATH
@@ -38,7 +26,7 @@ script:
   - sudo make build
   - sudo make install
   - sudo rm -rf /usr/local/go
-  - sudo apt-get install -y golang
+  - sudo apt-get install -yq golang
   - sudo whereis pouchd
   - sudo whereis go
   - whereis go
