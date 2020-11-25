@@ -26,10 +26,10 @@ script:
   - pwd
   - echo $GOPATH
   - mkdir -p ${GOPATH}/src/github.com/alibaba/
-  - cd {GOPATH}/src/github.com/alibaba/
+  - cd ${GOPATH}/src/github.com/alibaba/
   - git clone https://github.com/jagrati15/pouch
   - cd pouch
-  - PATH="$PATH" sudo make build && make install
+  - make build && make install
   - whereis pouchd
   - sudo cp bin/pouch /usr/local/bin
   - sudo cp bin/pouchd /usr/local/bin
