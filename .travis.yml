@@ -1,7 +1,5 @@
-#sudo: required
+sudo: required
 
-arch:
-  - amd64
 language: go
 
 go:
@@ -12,6 +10,21 @@ script:
   - echo $HOME
   - ls
   - pwd
+  - if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
+    sudo wget https://dl.google.com/go/go1.12.linux-arm64.tar.gz;
+    sudo tar -xf go1.12.linux-arm64.tar.gz;
+    sudo mv go /usr/bin;
+    export GOROOT=/usr/bin/go;
+    export GOPATH=$HOME/go;
+    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
+    else
+    sudo wget https://dl.google.com/go/go1.12.linux-amd64.tar.gz;
+    sudo tar -xf go1.12.linux-amd64.tar.gz;
+    sudo mv go /usr/bin;
+    export GOROOT=/usr/bin/go;
+    export GOPATH=$HOME/go;
+    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
+    fi
   - echo $GOPATH
   - echo $PATH
   - sudo mkdir -p ${GOPATH}/src/github.com/alibaba/
@@ -23,6 +36,8 @@ script:
   - sudo go version
   - sudo PATH="$PATH" go version
   - go version
+  - sudo cp /home/travis/.gimme/versions/go1.13.4.linux.amd64/bin/go /usr/bin/
+  - sudo go version
   - sudo make build
   - sudo make install
   - sudo rm -rf /usr/local/go
