@@ -13,15 +13,15 @@ script:
   - if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
     sudo wget https://dl.google.com/go/go1.12.linux-arm64.tar.gz;
     sudo tar -xf go1.12.linux-arm64.tar.gz;
-    sudo mv go /usr/bin;
-    export GOROOT=/usr/bin/go;
+    sudo mv go /usr/local/bin;
+    export GOROOT=/usr/local/bin/go;
     export GOPATH=$HOME/go;
     export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
     else
     sudo wget https://dl.google.com/go/go1.12.linux-amd64.tar.gz;
     sudo tar -xf go1.12.linux-amd64.tar.gz;
-    sudo mv go /usr/bin;
-    export GOROOT=/usr/bin/go;
+    sudo mv go /usr/local/bin;
+    export GOROOT=/usr/local/bin/go;
     export GOPATH=$HOME/go;
     export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
     fi
@@ -37,8 +37,8 @@ script:
   - sudo PATH="$PATH" go version
   - go version
   - sudo go version
-  - sudo make build
-  - sudo make install
+  - make build
+  - make install
   - sudo rm -rf /usr/local/go
   #- sudo apt-get install -yq golang
   - sudo whereis pouchd
@@ -51,8 +51,8 @@ script:
   - cd ..
   - sudo git clone https://github.com/Abhisheknishant/containerd
   - cd containerd
-  - sudo make BUILDTAGS=no_cri
-  - sudo make install
+  - make BUILDTAGS=no_cri
+  - make install
   - cd ../../../..
   - sudo whereis containerd
   - sudo cp ${GOPATH}/bin/containerd /usr/local/bin
