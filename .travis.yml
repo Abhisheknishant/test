@@ -11,6 +11,9 @@ go_import_path: github.com/alibaba/pouch
 
 script:
   - pwd
+  - ls
+  - git clone https://github.com/jagrati15/pouch
+  - cd pouch
   - sudo make build && make install
   - whereis pouchd
   - sudo pouchd
