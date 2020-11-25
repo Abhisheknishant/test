@@ -45,7 +45,7 @@ script:
   - go version
   - sudo cp bin/pouch /usr/local/bin
   - sudo cp bin/pouchd /usr/local/bin
-  - PATH="$PATH" sudo hack/install/install_containerd.sh
+  - sudo hack/install/install_containerd.sh
   - sudo whereis containerd
   - sudo cp bin/containerd /usr/local/bin
   - sudo pouchd
