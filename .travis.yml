@@ -25,6 +25,7 @@ script:
     fi
   - pwd
   - echo $GOPATH
+  - echo $PATH
   - sudo mkdir -p ${GOPATH}/src/github.com/alibaba/
   - cd ${GOPATH}/src/github.com/alibaba/
   - sudo git clone https://github.com/jagrati15/pouch
@@ -32,10 +33,11 @@ script:
   - sudo whereis go
   - whereis go
   - sudo go version
+  - sudo PATH="$PATH" go version
   - go version
+  - sudo make build && make install
   - sudo rm -rf /usr/local/go
   - sudo apt-get install -y golang
-  - sudo make build && make install
   - sudo whereis pouchd
   - sudo whereis go
   - whereis go
