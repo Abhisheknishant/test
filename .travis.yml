@@ -2,12 +2,7 @@ sudo: required
 
 arch:
   - amd64
-  - arm64
 language: go
-go:
-  - 1.13.4
-
-go_import_path: github.com/alibaba
 
 script:
   - pwd
@@ -28,8 +23,9 @@ script:
     export GOPATH=$HOME/go;
     export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
     fi
-  - mkdir -p src/github.com/alibaba/
-  - cd src/github.com/alibaba/
+  - pwd
+  - mkdir -p ${GOPATH}/src/github.com/alibaba/
+  - cd {GOPATH}/src/github.com/alibaba/
   - git clone https://github.com/jagrati15/pouch
   - cd pouch
   - PATH="$PATH" sudo make build && make install
