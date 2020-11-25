@@ -31,11 +31,16 @@ script:
   - cd pouch
   - sudo whereis go
   - whereis go
+  - sudo go version
+  - go version
+  - sudo rm -rf /usr/local/go
   - sudo apt-get install -y golang
   - sudo make build && make install
   - sudo whereis pouchd
   - sudo whereis go
   - whereis go
+  - sudo go version
+  - go version
   - sudo cp bin/pouch /usr/local/bin
   - sudo cp bin/pouchd /usr/local/bin
   - PATH="$PATH" sudo hack/install/install_containerd.sh
