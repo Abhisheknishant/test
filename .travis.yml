@@ -1,9 +1,9 @@
 sudo: required
 
-language: go
+#language: go
 
-go:
-  - 1.13.4
+#go:
+#  - 1.13.4
 
 script:
   - pwd
@@ -29,29 +29,33 @@ script:
   - echo $PATH
   - sudo mkdir -p ${GOPATH}/src/github.com/alibaba/
   - cd ${GOPATH}/src/github.com/alibaba/
-  - sudo git clone https://github.com/jagrati15/pouch
+  - sudo git clone https://github.com/Abhisheknishant/pouch
   - cd pouch
   - sudo whereis go
   - whereis go
   - sudo go version
   - sudo PATH="$PATH" go version
   - go version
-  - sudo cp /home/travis/.gimme/versions/go1.13.4.linux.amd64/bin/go /usr/bin/
   - sudo go version
   - sudo make build
   - sudo make install
   - sudo rm -rf /usr/local/go
-  - sudo apt-get install -yq golang
+  #- sudo apt-get install -yq golang
   - sudo whereis pouchd
   - sudo whereis go
   - whereis go
   - sudo go version
   - go version
-  - sudo cp bin/pouch /usr/local/bin
-  - sudo cp bin/pouchd /usr/local/bin
-  - sudo hack/install/install_containerd.sh
+  - sudo cp ${GOPATH}/bin/pouch /usr/local/bin
+  - sudo cp ${GOPATH}/bin/pouchd /usr/local/bin
+  - cd ..
+  - sudo git clone https://github.com/Abhisheknishant/containerd
+  - cd containerd
+  - sudo make BUILDTAGS=no_cri
+  - sudo make install
+  - cd ../../../..
   - sudo whereis containerd
-  - sudo cp bin/containerd /usr/local/bin
+  - sudo cp ${GOPATH}/bin/containerd /usr/local/bin
   - sudo pouchd
   - sudo /usr/local/bin/pouch run -d --name TestRunWithDefaultShm registry.hub.docker.com/library/busybox:1.28 top
   - sudo /usr/local/bin/pouch exec TestRunWithDefaultShm df -k /dev/shm
