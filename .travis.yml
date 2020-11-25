@@ -11,14 +11,32 @@ go_import_path: github.com/alibaba
 
 script:
   - pwd
+  - echo $HOME
   - ls
+  - if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
+    wget https://dl.google.com/go/go1.12.linux-arm64.tar.gz;
+    tar -xvf go1.12.linux-arm64.tar.gz;
+    sudo mv go /usr/local;
+    export GOROOT=/usr/local/go;
+    export GOPATH=$HOME/go;
+    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
+    else
+    wget https://dl.google.com/go/go1.12.linux-amd64.tar.gz;
+    tar -xvf go1.12.linux-amd64.tar.gz;
+    sudo mv go /usr/local;
+    export GOROOT=/usr/local/go;
+    export GOPATH=$HOME/go;
+    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
+    fi
+  - mkdir -p src/github.com/alibaba/
+  - cd src/github.com/alibaba/
   - git clone https://github.com/jagrati15/pouch
   - cd pouch
-  - make build && make install
+  - sudo make build && make install
   - whereis pouchd
   - sudo cp bin/pouch /usr/local/bin
   - sudo cp bin/pouchd /usr/local/bin
-  - hack/install/install_containerd.sh
+  - sudo hack/install/install_containerd.sh
   - sudo whereis containerd
   - sudo cp bin/containerd /usr/local/bin
   - sudo pouchd
