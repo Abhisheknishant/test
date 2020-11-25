@@ -1,4 +1,4 @@
-#sudo: required
+sudo: required
 
 arch:
   - amd64
@@ -9,29 +9,29 @@ script:
   - echo $HOME
   - ls
   - if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
-    wget https://dl.google.com/go/go1.12.linux-arm64.tar.gz;
-    tar -xf go1.12.linux-arm64.tar.gz;
+    sudo wget https://dl.google.com/go/go1.12.linux-arm64.tar.gz;
+    sudo tar -xf go1.12.linux-arm64.tar.gz;
     sudo mv go /usr/local;
-    export GOROOT=/usr/local/go;
-    export GOPATH=$HOME/go;
-    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
+    sudo export GOROOT=/usr/local/go;
+    sudo export GOPATH=$HOME/go;
+    sudo export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
     else
-    wget https://dl.google.com/go/go1.12.linux-amd64.tar.gz;
-    tar -xf go1.12.linux-amd64.tar.gz;
+    sudo wget https://dl.google.com/go/go1.12.linux-amd64.tar.gz;
+    sudo tar -xf go1.12.linux-amd64.tar.gz;
     sudo mv go /usr/local;
-    export GOROOT=/usr/local/go;
-    export GOPATH=$HOME/go;
-    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
+    sudo export GOROOT=/usr/local/go;
+    sudo export GOPATH=$HOME/go;
+    sudo export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
     fi
   - pwd
   - echo $GOPATH
-  - mkdir -p ${GOPATH}/src/github.com/alibaba/
-  - cd ${GOPATH}/src/github.com/alibaba/
-  - git clone https://github.com/jagrati15/pouch
-  - cd pouch
-  - sudo apt-get install -y golang
-  - make build && make install
-  - whereis pouchd
+  - sudo mkdir -p ${GOPATH}/src/github.com/alibaba/
+  - sudo cd ${GOPATH}/src/github.com/alibaba/
+  - sudo git clone https://github.com/jagrati15/pouch
+  - sudo cd pouch
+  #- sudo apt-get install -y golang
+  - sudo make build && make install
+  - sudo whereis pouchd
   - sudo cp bin/pouch /usr/local/bin
   - sudo cp bin/pouchd /usr/local/bin
   - PATH="$PATH" sudo hack/install/install_containerd.sh
