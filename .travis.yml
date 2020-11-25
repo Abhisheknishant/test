@@ -1,0 +1,18 @@
+sudo: required
+
+arch:
+  - amd64
+  - arm64
+language: go
+go:
+  - 1.13.4
+
+go_import_path: github.com/alibaba/pouch
+
+script:
+  - pwd
+  - sudo make build && make install
+  - whereis pouchd
+  - sudo pouchd
+  - sudo /usr/local/bin/pouch run -d --name TestRunWithDefaultShm registry.hub.docker.com/library/busybox:1.28 top
+  - sudo /usr/local/bin/pouch exec TestRunWithDefaultShm df -k /dev/shm
