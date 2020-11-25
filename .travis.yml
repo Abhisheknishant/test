@@ -18,6 +18,9 @@ script:
   - whereis pouchd
   - sudo cp bin/pouch /usr/local/bin
   - sudo cp bin/pouchd /usr/local/bin
+  - hack/install/install_containerd.sh
+  - sudo whereis containerd
+  - sudo cp bin/containerd /usr/local/bin
   - sudo pouchd
   - sudo /usr/local/bin/pouch run -d --name TestRunWithDefaultShm registry.hub.docker.com/library/busybox:1.28 top
   - sudo /usr/local/bin/pouch exec TestRunWithDefaultShm df -k /dev/shm
