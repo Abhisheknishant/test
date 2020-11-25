@@ -16,6 +16,8 @@ script:
   - cd pouch
   - make build && make install
   - whereis pouchd
+  - sudo cp bin/pouch /usr/local/bin
+  - sudo cp bin/pouchd /usr/local/bin
   - sudo pouchd
   - sudo /usr/local/bin/pouch run -d --name TestRunWithDefaultShm registry.hub.docker.com/library/busybox:1.28 top
   - sudo /usr/local/bin/pouch exec TestRunWithDefaultShm df -k /dev/shm
