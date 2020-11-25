@@ -12,23 +12,23 @@ script:
     sudo wget https://dl.google.com/go/go1.12.linux-arm64.tar.gz;
     sudo tar -xf go1.12.linux-arm64.tar.gz;
     sudo mv go /usr/local;
-    sudo export GOROOT=/usr/local/go;
-    sudo export GOPATH=$HOME/go;
-    sudo export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
+    export GOROOT=/usr/local/go;
+    export GOPATH=$HOME/go;
+    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
     else
     sudo wget https://dl.google.com/go/go1.12.linux-amd64.tar.gz;
     sudo tar -xf go1.12.linux-amd64.tar.gz;
     sudo mv go /usr/local;
-    sudo export GOROOT=/usr/local/go;
-    sudo export GOPATH=$HOME/go;
-    sudo export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
+    export GOROOT=/usr/local/go;
+    export GOPATH=$HOME/go;
+    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH;
     fi
   - pwd
   - echo $GOPATH
   - sudo mkdir -p ${GOPATH}/src/github.com/alibaba/
-  - sudo cd ${GOPATH}/src/github.com/alibaba/
+  - cd ${GOPATH}/src/github.com/alibaba/
   - sudo git clone https://github.com/jagrati15/pouch
-  - sudo cd pouch
+  - cd pouch
   #- sudo apt-get install -y golang
   - sudo make build && make install
   - sudo whereis pouchd
