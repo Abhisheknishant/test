@@ -7,14 +7,14 @@ language: go
 go:
   - 1.13.4
 
-go_import_path: github.com/alibaba/pouch
+go_import_path: github.com/alibaba
 
 script:
   - pwd
   - ls
   - git clone https://github.com/jagrati15/pouch
   - cd pouch
-  - sudo make build && make install
+  - make build && make install
   - whereis pouchd
   - sudo pouchd
   - sudo /usr/local/bin/pouch run -d --name TestRunWithDefaultShm registry.hub.docker.com/library/busybox:1.28 top
