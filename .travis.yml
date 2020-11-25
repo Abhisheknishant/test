@@ -32,11 +32,11 @@ script:
   - cd src/github.com/alibaba/
   - git clone https://github.com/jagrati15/pouch
   - cd pouch
-  - sudo make build && make install
+  - PATH="$PATH" sudo make build && make install
   - whereis pouchd
   - sudo cp bin/pouch /usr/local/bin
   - sudo cp bin/pouchd /usr/local/bin
-  - sudo hack/install/install_containerd.sh
+  - PATH="$PATH" sudo hack/install/install_containerd.sh
   - sudo whereis containerd
   - sudo cp bin/containerd /usr/local/bin
   - sudo pouchd
