@@ -1,4 +1,4 @@
-sudo: required
+#sudo: required
 
 arch:
   - amd64
@@ -35,7 +35,8 @@ script:
   - sudo go version
   - sudo PATH="$PATH" go version
   - go version
-  - sudo make build && make install
+  - sudo make build
+  - sudo make install
   - sudo rm -rf /usr/local/go
   - sudo apt-get install -y golang
   - sudo whereis pouchd
